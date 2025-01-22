@@ -14,14 +14,14 @@ GET http://localhost:3001/api/persons/1
 GET http://localhost:3001/api/persons/999
 
 ### Delete a user by ID
-DELETE http://localhost:3001/api/persons/478965879
+DELETE http://localhost:3001/api/persons/992561281
 
 ### Add a new user
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-  "content": "Grace Hopper",
+  "name": "Grace Hopper",
   "number": "555-123456"
 }
 

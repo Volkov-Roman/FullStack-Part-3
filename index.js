@@ -19,22 +19,22 @@ let persons = [
     { 
       "id": "1",
       "name": "Arto Hellas", 
-      "number": "040-123456"
+      "phone": "040-123456"
     },
     { 
       "id": "2",
       "name": "Ada Lovelace", 
-      "number": "39-44-5323523"
+      "phone": "39-44-5323523"
     },
     { 
       "id": "3",
       "name": "Dan Abramov", 
-      "number": "12-43-234345"
+      "phone": "12-43-234345"
     },
     { 
       "id": "4",
       "name": "Mary Poppendieck", 
-      "number": "39-23-6423122"
+      "phone": "39-23-6423122"
     }
 ]
 
@@ -79,7 +79,7 @@ app.delete('/api/persons/:id', (request, response) => {
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
-  if (!body.name || !body.number) {
+  if (!body.name || !body.phone) {
     return response.status(400).json({ 
       error: 'Name or number is missing' 
     })
@@ -95,7 +95,7 @@ app.post('/api/persons', (request, response) => {
   const person = {
     id: String(Math.floor(Math.random() * 1_000_000_000)),
     name: body.name,
-    number: body.number
+    phone: body.phone
   }
 
   persons = persons.concat(person)

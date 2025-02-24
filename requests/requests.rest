@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
   "name": "Grace Hopper",
-  "number": "555-123456"
+  "phone": "555-123456"
 }
 
 ### Add a user without content (error 400)
@@ -30,5 +30,5 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-  "number": "555-987654"
+  "phone": "555-987654"
 }

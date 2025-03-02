@@ -28,15 +28,17 @@ app.get('/api/persons', (request, response) => {
   })
 })
 
-app.get('/info', (request, response) => {
-    const count = persons.length;
-    const currentTime = new Date().toLocaleString()
-  
+app.get('/info', (request, response, next) => {
+  Person.countDocuments({})
+  .then(count => {
+    const currentTime = new Date().toLocaleString();
     response.send(`
       <p>Phonebook has info for ${count} people</p>
       <br/>
       <p>${currentTime}</p>
-    `)
+    `);
+  })
+  .catch(error => next(error));
   })
 
 app.get('/api/persons/:id', (request, response, next) => {
@@ -59,7 +61,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
 
   if (!body.name || !body.phone) {
@@ -68,21 +70,14 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
-  // const nameExists = persons.some(person => person.name === body.name)
-  // if (nameExists) {
-  //   return response.status(400).json({
-  //     error: 'Name already exists in the phonebook'
-  //   })
-  // }
-
   const person = new Person({
     name: body.name,
     phone: body.phone,
   })
 
-  person.save().then(savedPerson => {
-    response.json(savedPerson)
-  })
+  person.save()
+    .then(savedPerson => response.json(savedPerson))
+    .catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {

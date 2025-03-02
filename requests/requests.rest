@@ -8,7 +8,7 @@ GET http://localhost:3001/api/persons
 GET http://localhost:3001/info
 
 ### Get a user by ID (existing ID)
-GET http://localhost:3001/api/persons/1
+GET http://localhost:3001/api/persons/67c3685f5bfb957b786c6ee2
 
 ### Get a user by ID (non-existing ID)
 GET http://localhost:3001/api/persons/999

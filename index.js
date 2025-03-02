@@ -30,19 +30,19 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/info', (request, response, next) => {
   Person.countDocuments({})
-  .then(count => {
-    const currentTime = new Date().toLocaleString();
-    response.send(`
+    .then(count => {
+      const currentTime = new Date().toLocaleString()
+      response.send(`
       <p>Phonebook has info for ${count} people</p>
       <br/>
       <p>${currentTime}</p>
-    `);
-  })
-  .catch(error => next(error));
-  })
+    `)
+    })
+    .catch(error => next(error))
+})
 
 app.get('/api/persons/:id', (request, response, next) => {
-    Person.findById(request.params.id)
+  Person.findById(request.params.id)
     .then(person => {
       if (person) {
         response.json(person)
@@ -51,11 +51,11 @@ app.get('/api/persons/:id', (request, response, next) => {
       }
     })
     .catch(error => next(error))
-  })
+})
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -80,13 +80,13 @@ app.put('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndUpdate(request.params.id, { name, phone }, { new: true, runValidators: true, context: 'query' })
     .then(updatedPerson => {
       if (updatedPerson) {
-        response.json(updatedPerson);
+        response.json(updatedPerson)
       } else {
-        response.status(404).json({ error: 'Person not found' });
+        response.status(404).json({ error: 'Person not found' })
       }
     })
-    .catch(error => next(error));
-});
+    .catch(error => next(error))
+})
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })

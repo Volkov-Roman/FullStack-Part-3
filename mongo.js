@@ -23,32 +23,32 @@ const Person = mongoose.model('Person', personSchema)
 // If only the password is given, list all entries
 if (process.argv.length === 3) {
   Person.find({}).then(result => {
-    console.log('Phonebook:');
+    console.log('Phonebook:')
     result.forEach(person => {
-      console.log(`${person.name} ${person.phone}`);
-    });
-    mongoose.connection.close();
-  });
-} 
+      console.log(`${person.name} ${person.phone}`)
+    })
+    mongoose.connection.close()
+  })
+}
 // If a name and number are provided, add a new entry
 else if (process.argv.length === 5) {
-  const name = process.argv[3];
-  const phone = process.argv[4];
+  const name = process.argv[3]
+  const phone = process.argv[4]
 
   const person = new Person({
     name: name,
     phone: phone,
-  });
+  })
 
   person.save().then(() => {
-    console.log(`Added ${name} number ${phone} to phonebook`);
-    mongoose.connection.close();
-  });
-} 
+    console.log(`Added ${name} number ${phone} to phonebook`)
+    mongoose.connection.close()
+  })
+}
 // Invalid usage
 else {
-  console.log('Invalid number of arguments. Use either:');
-  console.log('To list all entries: node mongo.js <password>');
-  console.log('To add a new entry: node mongo.js <password> <name> <phone>');
-  process.exit(1);
+  console.log('Invalid number of arguments. Use either:')
+  console.log('To list all entries: node mongo.js <password>')
+  console.log('To add a new entry: node mongo.js <password> <name> <phone>')
+  process.exit(1)
 }

@@ -17,7 +17,7 @@ GET http://localhost:3001/api/persons/67c3685d5bfb957b786c6ee2
 GET http://localhost:3001/api/persons/999
 
 ### Delete a user by ID
-DELETE http://localhost:3001/api/persons/67c4389fc1c4a974d49fe08f
+DELETE http://localhost:3001/api/persons/67c46e68d4075eec6181c4b0
 
 ### Add a new user
 POST http://localhost:3001/api/persons
